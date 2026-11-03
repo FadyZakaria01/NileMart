@@ -15,6 +15,7 @@ public class Product {
     private String name;
     private String sku;
     private BigDecimal price;
+    private  int stockQuantity;
     private String category;
     private boolean isActive;
    }

@@ -15,5 +15,6 @@ public class Main {
         ProductController productController = new ProductController(viewer,  productService);
 
         productController.listAvailableProducts();
+
     }
 }

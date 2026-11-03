@@ -1,10 +1,13 @@
 package org.route;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -33,9 +36,19 @@ public class InMemoryProductRepository implements ProductRepository{
         store.put(p2.getSku(), p2);
     }
 
+    @PreDestroy
+    public void closed() {
+        System.out.println("Catalog closed");
+    }
+
     @Override
     public Optional<Product> findBySku(String sku) {
         return Optional.ofNullable(store.get(sku));
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return new ArrayList<>(store.values());
     }
 
 }
